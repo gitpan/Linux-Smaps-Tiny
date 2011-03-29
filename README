@@ -22,7 +22,7 @@ DESCRIPTION
 
 FUNCTIONS
   get_smaps_summary
-    Takes an optional process id (defaults to $$) and returns a summary of
+    Takes an optional process id (defaults to "self") returns a summary of
     the smaps data for the given process. Dies if the process does not
     exist.
 

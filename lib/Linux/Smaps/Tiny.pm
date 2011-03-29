@@ -3,7 +3,7 @@ BEGIN {
   $Linux::Smaps::Tiny::AUTHORITY = 'cpan:AVAR';
 }
 BEGIN {
-  $Linux::Smaps::Tiny::VERSION = '0.01';
+  $Linux::Smaps::Tiny::VERSION = '0.02';
 }
 use strict;
 use warnings FATAL => "all";
@@ -43,8 +43,8 @@ L<Linux::Smaps> instead.
 
 =head2 get_smaps_summary
 
-Takes an optional process id (defaults to $$) and returns a summary of
-the smaps data for the given process. Dies if the process does not
+Takes an optional process id (defaults to C<self>) returns a summary
+of the smaps data for the given process. Dies if the process does not
 exist.
 
 Returns a hashref like this:
@@ -68,7 +68,7 @@ Values are in kB.
 =cut
 
 sub get_smaps_summary {
-    my $proc_id= shift || $$;
+    my $proc_id= shift || "self";
     my $smaps_file= "/proc/$proc_id/smaps";
     open my $fh, "<", $smaps_file
         or die "Failed to read '$smaps_file': $!";
@@ -76,10 +76,8 @@ sub get_smaps_summary {
     while (<$fh>) {
         next unless substr($_,-3) eq "kB\n";
         my ($field, $value)= split /:/,$_;
-        if ($value) {
-            no warnings 'numeric';
-            $sum{$field}+=$value;
-        }
+        no warnings 'numeric';
+        $sum{$field}+=$value if $value;
     }
     close $fh;
     return \%sum;
