@@ -1,5 +1,9 @@
 Revision history for Linux::Smaps::Tiny
 
+0.03 2011-03-29 12:52:03
+
+    - Add more information to our die() messages
+
 0.02 2011-03-29 12:18:55
 
     - Default to /proc/self/smaps, not /proc/$$/smaps
