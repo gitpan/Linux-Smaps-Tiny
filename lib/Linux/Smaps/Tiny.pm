@@ -3,7 +3,7 @@ BEGIN {
   $Linux::Smaps::Tiny::AUTHORITY = 'cpan:AVAR';
 }
 BEGIN {
-  $Linux::Smaps::Tiny::VERSION = '0.04';
+  $Linux::Smaps::Tiny::VERSION = '0.05';
 }
 use strict;
 use warnings FATAL => "all";
@@ -99,5 +99,7 @@ Copyright 2011 Yves Orton <yves@cpan.org> and Ævar Arnfjörð Bjarmason
 
 This program is free software, you can redistribute it and/or modify
 it under the same terms as Perl itself.
+
+=cut
 
 1;
