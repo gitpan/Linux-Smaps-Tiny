@@ -1,5 +1,9 @@
 Revision history for Linux::Smaps::Tiny
 
+0.04 2011-03-30 09:24:57
+
+    - Update documentation
+
 0.03 2011-03-29 12:52:03
 
     - Add more information to our die() messages

@@ -14,11 +14,14 @@ SYNOPSIS
 DESCRIPTION
     This module is a tiny interface to /proc/$$/smaps files. It was written
     because when we rolled out Linux::Smaps in some critical code at a Big
-    Internet Company we experienced slowdowns due to its generous use of
-    method calls.
+    Internet Company we experienced slowdowns that were solved by writing a
+    more minimal version.
 
     If something like that isn't your use case you should probably use
-    Linux::Smaps instead.
+    Linux::Smaps instead. Also note that Linux::Smaps itself has been
+    optimized
+    <http://mail-archives.apache.org/mod_mbox/perl-modperl/201103.mbox/brows
+    er> since this module was initially written.
 
 FUNCTIONS
   get_smaps_summary
