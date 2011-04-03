@@ -12,16 +12,29 @@ SYNOPSIS
         warn "Size / Clean / Dirty = $size / $shared_clean/ $shared_dirty";
 
 DESCRIPTION
-    This module is a tiny interface to /proc/$$/smaps files. It was written
+    This module is a tiny interface to /proc/PID/smaps files. It was written
     because when we rolled out Linux::Smaps in some critical code at a Big
     Internet Company we experienced slowdowns that were solved by writing a
     more minimal version.
+
+    This module will try to use XS code to parse the smaps file, and if that
+    doesn't work it'll fall back on a pure-Perl version.
 
     If something like that isn't your use case you should probably use
     Linux::Smaps instead. Also note that Linux::Smaps itself has been
     optimized
     <http://mail-archives.apache.org/mod_mbox/perl-modperl/201103.mbox/brows
     er> since this module was initially written.
+
+  SPEED
+    The distribution comes with a contrib/benchmark.pl script. As of writing
+    this is the speed of Linux::Smaps v.s. Linux::Smaps::Tiny, both the XS
+    and PP versions:
+
+                                 Rate Linux::Smaps Linux::Smaps::Tiny::PP Linux::Smaps::Tiny
+        Linux::Smaps            810/s           --                   -22%               -61%
+        Linux::Smaps::Tiny::PP 1033/s          28%                     --               -51%
+        Linux::Smaps::Tiny     2101/s         159%                   103%                 --
 
 FUNCTIONS
   get_smaps_summary

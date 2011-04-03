@@ -15,6 +15,7 @@
    "name" : "Linux-Smaps-Tiny",
    "no_index" : {
       "directory" : [
+         "inc",
          "t"
       ]
    },
@@ -26,13 +27,15 @@
       },
       "runtime" : {
          "requires" : {
-            "Exporter" : 0
+            "Exporter" : 0,
+            "XSLoader" : 0
          }
       },
       "test" : {
          "requires" : {
             "File::Find" : 0,
             "File::Temp" : 0,
+            "List::Util" : 0,
             "Test::More" : 0
          }
       }
@@ -53,7 +56,7 @@
          "web" : "http://github.com/avar/linux-smaps-tiny"
       }
    },
-   "version" : "0.05",
+   "version" : "0.06",
    "x_authority" : "cpan:AVAR"
 }
 

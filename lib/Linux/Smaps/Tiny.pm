@@ -3,10 +3,18 @@ BEGIN {
   $Linux::Smaps::Tiny::AUTHORITY = 'cpan:AVAR';
 }
 BEGIN {
-  $Linux::Smaps::Tiny::VERSION = '0.05';
+  $Linux::Smaps::Tiny::VERSION = '0.06';
 }
 use strict;
 use warnings FATAL => "all";
+
+BEGIN {
+    local ($@, $!);
+    eval {
+        require XSLoader;
+        XSLoader::load(__PACKAGE__, $Linux::Smaps::Tiny::VERSION || '0.01');
+    };
+}
 
 use Exporter 'import';
 
@@ -31,16 +39,30 @@ Linux::Smaps::Tiny - A minimal and fast alternative to L<Linux::Smaps>
 
 =head1 DESCRIPTION
 
-This module is a tiny interface to F</proc/$$/smaps> files. It was
+This module is a tiny interface to F</proc/PID/smaps> files. It was
 written because when we rolled out L<Linux::Smaps> in some critical
 code at a Big Internet Company we experienced slowdowns that were
 solved by writing a more minimal version.
+
+This module will try to use XS code to parse the smaps file, and if
+that doesn't work it'll fall back on a pure-Perl version.
 
 If something like that isn't your use case you should probably use
 L<Linux::Smaps> instead. Also note that L<Linux::Smaps> itself L<has
 been
 optimized|http://mail-archives.apache.org/mod_mbox/perl-modperl/201103.mbox/browser>
 since this module was initially written.
+
+=head2 SPEED
+
+The distribution comes with a F<contrib/benchmark.pl> script. As of
+writing this is the speed of L<Linux::Smaps>
+v.s. L<Linux::Smaps::Tiny>, both the XS and PP versions:
+
+                             Rate Linux::Smaps Linux::Smaps::Tiny::PP Linux::Smaps::Tiny
+    Linux::Smaps            810/s           --                   -22%               -61%
+    Linux::Smaps::Tiny::PP 1033/s          28%                     --               -51%
+    Linux::Smaps::Tiny     2101/s         159%                   103%                 --
 
 =head1 FUNCTIONS
 
@@ -70,26 +92,9 @@ Values are in kB.
 
 =cut
 
-sub get_smaps_summary {
-    my $proc_id= shift || "self";
-    my $smaps_file= "/proc/$proc_id/smaps";
-    open my $fh, "<", $smaps_file
-        or do {
-            my $errnum= 0+$!; # numify
-            my $errmsg= "$!"; # stringify
-            my $msg= "In get_smaps_summary, failed to read '$smaps_file': [$errnum] $errmsg";
-
-            die $msg;
-        };
-    my %sum;
-    while (<$fh>) {
-        next unless substr($_,-3) eq "kB\n";
-        my ($field, $value)= split /:/,$_;
-        no warnings 'numeric';
-        $sum{$field}+=$value if $value;
-    }
-    close $fh;
-    return \%sum;
+unless (defined &get_smaps_summary) {
+    require Linux::Smaps::Tiny::PP;
+    *get_smaps_summary = \&Linux::Smaps::Tiny::PP::__get_smaps_summary;
 }
 
 =head1 LICENSE AND COPYRIGHT
