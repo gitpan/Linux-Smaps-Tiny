@@ -9,7 +9,7 @@ SYNOPSIS
         my $shared_clean = $summary->{Shared_Clean};
         my $shared_dirty = $summary->{Shared_Dirty};
 
-        warn "Size / Clean / Dirty = $size / $shared_clean/ $shared_dirty";
+        print "Size / Clean / Dirty = $size / $shared_clean / $shared_dirty\n";
 
 DESCRIPTION
     This module is a tiny interface to /proc/PID/smaps files. It was written
