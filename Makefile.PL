@@ -3,7 +3,7 @@
 
 use strict;
 use warnings;
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 my %WriteMakefileArgs = (
   'ABSTRACT' => 'A minimal and fast alternative to L<Linux::Smaps>',
@@ -15,7 +15,7 @@ my %WriteMakefileArgs = (
     'Test::More' => '0'
   },
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+    'ExtUtils::MakeMaker' => '6.30'
   },
   'DISTNAME' => 'Linux-Smaps-Tiny',
   'EXE_FILES' => [],
@@ -25,7 +25,7 @@ my %WriteMakefileArgs = (
     'Exporter' => '0',
     'XSLoader' => '0'
   },
-  'VERSION' => '0.06',
+  'VERSION' => '0.07',
   'test' => {
     'TESTS' => 't/*.t'
   }
