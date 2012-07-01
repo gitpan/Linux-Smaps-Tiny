@@ -4,7 +4,7 @@
       "\u00c3\u0086var Arnfj\u00c3\u00b6r\u00c3\u00b0 Bjarmason <avar@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200007, CPAN::Meta::Converter version 2.110930",
+   "generated_by" : "Dist::Zilla version 4.300016, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -27,16 +27,18 @@
       },
       "runtime" : {
          "requires" : {
-            "Exporter" : 0,
-            "XSLoader" : 0
+            "Exporter" : "0",
+            "XSLoader" : "0",
+            "strict" : "0",
+            "warnings" : "0"
          }
       },
       "test" : {
          "requires" : {
-            "File::Find" : 0,
-            "File::Temp" : 0,
-            "List::Util" : 0,
-            "Test::More" : 0
+            "File::Find" : "0",
+            "File::Temp" : "0",
+            "List::Util" : "0",
+            "Test::More" : "0"
          }
       }
    },
@@ -46,7 +48,7 @@
          "mailto" : "bug-Linux-Smaps-Tiny@rt.cpan.org",
          "web" : "https://rt.cpan.org/Public/Dist/Display.html?Name=Linux-Smaps-Tiny"
       },
-      "homepage" : "http://search.cpan.org/dist/Linux-Smaps-Tiny/",
+      "homepage" : "http://metacpan.org/release/Linux-Smaps-Tiny",
       "license" : [
          "http://dev.perl.org/licenses/"
       ],
@@ -56,7 +58,7 @@
          "web" : "http://github.com/avar/linux-smaps-tiny"
       }
    },
-   "version" : "0.08",
+   "version" : "0.09",
    "x_authority" : "cpan:AVAR"
 }
 

@@ -2,8 +2,8 @@ package Linux::Smaps::Tiny::PP;
 BEGIN {
   $Linux::Smaps::Tiny::PP::AUTHORITY = 'cpan:AVAR';
 }
-BEGIN {
-  $Linux::Smaps::Tiny::PP::VERSION = '0.08';
+{
+  $Linux::Smaps::Tiny::PP::VERSION = '0.09';
 }
 use strict;
 use warnings FATAL => "all";
