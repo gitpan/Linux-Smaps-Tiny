@@ -3,7 +3,7 @@ BEGIN {
   $Linux::Smaps::Tiny::PP::AUTHORITY = 'cpan:AVAR';
 }
 {
-  $Linux::Smaps::Tiny::PP::VERSION = '0.09';
+  $Linux::Smaps::Tiny::PP::VERSION = '0.10';
 }
 use strict;
 use warnings FATAL => "all";
